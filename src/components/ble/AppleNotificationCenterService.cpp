@@ -35,7 +35,23 @@ AppleNotificationCenterService::AppleNotificationCenterService(System::SystemTas
       .uuid = &ancsChar.u, 
       .access_cb = AppleNotificationCenterAlertCallback, 
       .arg = this, 
-      .flags = BLE_GATT_CHR_F_NOTIFY | BLE_GATT_CHR_F_WRITE_ENC | BLE_GATT_CHR_F_WRITE_AUTHOR
+      .flags = BLE_GATT_CHR_F_NOTIFY | BLE_GATT_CHR_F_WRITE_ENC | BLE_GATT_CHR_F_WRITE_AUTHOR | BLE_GATT_CHR_F_READ_AUTHEN
+    },
+    {
+      .uuid = &dataSourceChar.u, 
+      .access_cb = AppleNotificationCenterDataCallback,
+      .arg = this,
+      .flags = BLE_GATT_CHR_F_NOTIFY | BLE_GATT_CHR_F_READ_ENC | BLE_GATT_CHR_F_READ_AUTHEN
+    },
+    {0}
+  },
+  serviceDefinition {
+    {/* Device Information Service */
+      .type = BLE_GATT_SVC_TYPE_PRIMARY,
+      .uuid = &ancsSvc.u,
+      .characteristics = characteristicDefinition
+    },
+    {0},
     },
     { 
       .uuid = &dataSourceChar.u, 
