@@ -1,4 +1,5 @@
 #include "components/ble/AppleNotificationCenterClient.h"
+#include <nrf_log.h>
 #include <algorithm>
 #include "components/ble/NotificationManager.h"
 #include "systemtask/SystemTask.h"
